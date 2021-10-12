@@ -6,10 +6,10 @@ languageCode = "en"
 title = "Gun9niR"
 enableGitInfo = true
 theme = "FeelIt"
+SourceMap = true
 
-[params]
-  # FeelIt theme version
-  version = "1.0.X"
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
 
 [menu]
   [[menu.main]]
@@ -39,7 +39,191 @@ theme = "FeelIt"
     url = "/categories/"
     title = ""
     weight = 3
+  [[menu.main]]
+      identifier = "about"
+      pre = ""
+      post = ""
+      name = "About"
+      url = "/about/"
+      title = ""
+      weight = 4
+  
+[params]
+  # FeelIt theme version
+  version = "1.0.X"
+  # site description
+  description = "This is My New Hugo Site"
+  # site keywords
+  keywords = ["Theme", "Hugo"]
+  # site default theme ("light", "dark", "auto")
+  defaultTheme = "auto"
 
+  [params.about]
+    # whether to enable profile on about page
+    # depends on .Site.Params.home.profile.enable
+    enable = true
+    # whether to enable param layout
+    param = true
+    # title for param layout
+    paramTitle = "Introduction"
+    # general description of your site
+    # can be write with markdown style
+    description = "TODO"
+    # description of your status
+    [[params.about.status]]
+      faIcon = "fas fa-building"
+      title = "Institution"
+      desc = "Shanghai Jiao Tong University"
+    [[params.about.status]]
+      faIcon = "fas fa-graduation-cap"
+      title = "Major"
+      desc = "Software Engineering"
+    [[params.about.status]]
+      title = "Location"
+      faIcon = "fas fa-map-marker-alt"
+      desc = "Shanghai"
+    # description of your parameter
+    [[params.about.parameter]]
+      language = "Games"
+      level = "100"
+    [[params.about.parameter]]
+      language = "Sleeping"
+      level = "70"
+    [[params.about.parameter]]
+      language = "Coding"
+      level = "70"
+
+  [params.home]
+    # FeelIt NEW | 0.2.0
+    rss = 10
+    # Home page profile
+    [params.home.profile]
+      enable = true
+      # Gravatar Email for preferred avatar in home page
+      gravatarEmail = ""
+      # URL of avatar shown in home page
+      avatarURL = "/images/avatar.jpeg"
+      # FeelIt CHANGED | 0.2.7
+      title = "Gun9niR"
+      # subtitle shown in home page
+      subtitle = "Gamer & Coder"
+      # whether to use typeit animation for subtitle
+      typeit = true
+      # whether to show social links
+      social = true
+      # FeelIt NEW | 0.2.0
+      disclaimer = ""
+    # Home page posts
+    [params.home.posts]
+      enable = true
+      # special amount of posts in each home posts page
+      paginate = 6
+      # FeelIt CHANGED | 1.0.1
+      imagePreview = true
+      # FeelIt DELETED | 0.2.0
+      # default behavior when you don't set "hiddenFromHomePage" in front matter
+      defaultHiddenFromHomePage = false
+  [params.search]
+    enable = true
+    # type of search engine ("lunr", "algolia")
+    type = "lunr"
+    # max index length of the chunked content
+    contentLength = 4000
+    # placeholder of the search bar
+    placeholder = ""
+    # FeelIt NEW | 0.2.1
+    maxResultLength = 10
+    # FeelIt NEW | 0.2.3
+    snippetLength = 30
+    # FeelIt NEW | 0.2.1
+    highlightTag = "em"
+    # FeelIt NEW | 0.2.4
+    absoluteURL = false
+    [params.search.algolia]
+      index = ""
+      appID = ""
+      searchKey = ""
+  [params.social]
+    GitHub = "gun9nir"
+    Linkedin = ""
+    Twitter = ""
+    Instagram = ""
+    Facebook = ""
+    Telegram = ""
+    Medium = ""
+    Gitlab = ""
+    Youtubelegacy = ""
+    Youtubecustom = ""
+    Youtubechannel = ""
+    Tumblr = ""
+    Quora = ""
+    Keybase = ""
+    Pinterest = ""
+    Reddit = ""
+    Codepen = ""
+    FreeCodeCamp = ""
+    Bitbucket = ""
+    Stackoverflow = ""
+    Weibo = ""
+    Odnoklassniki = ""
+    VK = ""
+    Flickr = ""
+    Xing = ""
+    Snapchat = ""
+    Soundcloud = ""
+    Spotify = ""
+    Bandcamp = ""
+    Paypal = ""
+    Fivehundredpx = ""
+    Mix = ""
+    Goodreads = ""
+    Lastfm = ""
+    Foursquare = ""
+    Hackernews = ""
+    Kickstarter = ""
+    Patreon = ""
+    Steam = ""
+    Twitch = ""
+    Strava = ""
+    Skype = ""
+    Whatsapp = ""
+    Zhihu = ""
+    Douban = ""
+    Angellist = ""
+    Slidershare = ""
+    Jsfiddle = ""
+    Deviantart = ""
+    Behance = ""
+    Dribbble = ""
+    Wordpress = ""
+    Vine = ""
+    Googlescholar = ""
+    Researchgate = ""
+    Thingiverse = ""
+    Devto = ""
+    Gitea = ""
+    XMPP = ""
+    Matrix = ""
+    Bilibili = ""
+    Email = "gungnir_guo@sjtu.edu.cn"
+    Resume = "" #goo.gl id
+    xda = ""
+
+  [params.footer]
+    enable = true
+    # FeelIt NEW | 0.2.0
+    custom = ''
+    # FeelIt NEW | 0.2.0
+    # whether to show Hugo and theme info
+    hugo = true
+    # FeelIt NEW | 0.2.0
+    # whether to show copyright info
+    copyright = true
+    # FeelIt NEW | 0.2.0
+    # whether to show the author
+    author = true
+    # Site creation time
+    since = 2021
 # Markup related configuration in Hugo
 [markup]
   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
