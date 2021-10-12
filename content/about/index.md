@@ -18,7 +18,7 @@ September 2019 — June 2023 (Expected)
 
 Shanghai, China
 
-Currently rank 1/99 (92.285/)
+Currently rank 1/99 (92.285/100)
 
 GPA 92.285/100 (or 4.0255/4.3), Rank 1/99
 
