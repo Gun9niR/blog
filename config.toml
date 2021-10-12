@@ -57,7 +57,6 @@ SourceMap = true
   keywords = ["Theme", "Hugo"]
   # site default theme ("light", "dark", "auto")
   defaultTheme = "auto"
-
   [params.about]
     # whether to enable profile on about page
     # depends on .Site.Params.home.profile.enable
@@ -68,7 +67,7 @@ SourceMap = true
     paramTitle = "Introduction"
     # general description of your site
     # can be write with markdown style
-    description = "TODO"
+    description = "My name is Guo Zhidong (郭志东), a junior at SE@SJTU. I am a crazy fan of 3A lore-oriented RPG games, and codes from time to time."
     # description of your status
     [[params.about.status]]
       faIcon = "fas fa-building"
