@@ -54,6 +54,7 @@ Shanghai, China
 - [Jlox](https://github.com/Gun9niR/Crafting-Interpreters) -- A more serious interpreter with common programming language features
 - [LSM](https://github.com/Gun9niR/LSM) -- LSM KV store
 - [Ray tracer](https://github.com/Gun9niR/Ray-Tracer-in-Cpp) -- A basic ray tracer with antialiasing, defocus blur, motion blur, light source, importance sampling
+- [Kilo](https://github.com/Gun9niR/Kilo) -- A minial text editor that runs on terminal
 - Comment Overflow (Code to be tidied up) -- A cross-platform online forum mobile APP
 
 ## Skill
