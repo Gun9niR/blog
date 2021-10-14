@@ -16,7 +16,7 @@ This article records my first attempt with web service, using **React.js** as cl
 
 ## 1. SOAP
 
-SOAP is an application-level protocol for accessing web services. It's based on XML,and can leverage transfer protocols like HTML or SMTP to transfer the data.
+SOAP is an XML-based application-level protocol for accessing web services. It is normally sent on HTTP, but could be sent over SMTP or even FTP.
 
 [Anatomy of SOAP protocol](https://zhuanlan.zhihu.com/p/29819666)
 
@@ -76,5 +76,3 @@ Pitfalls:
 
 1. When an xml array contains only one element, the library will parse it as a single object.
 2. All fields of the obejct are of type `string`.
-
-
