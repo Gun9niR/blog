@@ -77,7 +77,7 @@ Java, C++, JavaScript, C, Dart
 ### English
 
 - CET-4: 664/710 (Top 1%)
-- TOFEL: TBD
+- TOEFL: TBD
 - GRE: TBD
 
 P.S. I cannot say I'm proficient with any of these techs, I have **used** them in my projects, that is all.
