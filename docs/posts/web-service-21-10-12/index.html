@@ -5,30 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Web Service : First attempt - Gun9niR</title><meta name="description" content="This is My New Hugo Site"><meta property="og:title" content="Web Service : First attempt" />
-<meta property="og:description" content="This article records my first attempt with web service, using React.js as client and Spring Boot as server in course SE3353.
+<meta property="og:description" content="This article records my first attempt with web service in course SE3353.
 1. SOAP SOAP is an XML-based application-level protocol for accessing web services. It is normally sent on HTTP, but could be sent over SMTP or even FTP.
 Anatomy of SOAP protocol
 1.1. SOAP vs REST They are not mutual-exclusive.
 Detailed comparison
-2. WSDL WSDL, or Web Service Description Language, is an XML based definition language." />
+2. WSDL WSDL, or Web Service Description Language, is an XML based definition language. It’s used for describing the functionality of a SOAP based web service, some important ones being:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://gun9nir.me/posts/web-service-21-10-12/" /><meta property="og:image" content="http://gun9nir.me/posts/web-service-21-10-12/featured-image-preview.jpeg"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-10-12T15:33:48+08:00" />
-<meta property="article:modified_time" content="2021-10-12T17:37:30+08:00" />
+<meta property="article:modified_time" content="2021-10-14T17:12:58+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="http://gun9nir.me/posts/web-service-21-10-12/featured-image-preview.jpeg"/>
 <meta name="twitter:title" content="Web Service : First attempt"/>
-<meta name="twitter:description" content="This article records my first attempt with web service, using React.js as client and Spring Boot as server in course SE3353.
+<meta name="twitter:description" content="This article records my first attempt with web service in course SE3353.
 1. SOAP SOAP is an XML-based application-level protocol for accessing web services. It is normally sent on HTTP, but could be sent over SMTP or even FTP.
 Anatomy of SOAP protocol
 1.1. SOAP vs REST They are not mutual-exclusive.
 Detailed comparison
-2. WSDL WSDL, or Web Service Description Language, is an XML based definition language."/>
+2. WSDL WSDL, or Web Service Description Language, is an XML based definition language. It’s used for describing the functionality of a SOAP based web service, some important ones being:"/>
 <meta name="application-name" content="Gun9niR">
 <meta name="apple-mobile-web-app-title" content="Gun9niR"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://gun9nir.me/posts/web-service-21-10-12/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://gun9nir.me/posts/web-service-21-10-12/" /><link rel="next" href="http://gun9nir.me/posts/micro-service-21-10-15/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -42,8 +42,8 @@ Detailed comparison
                             "url": "http:\/\/gun9nir.me\/posts\/web-service-21-10-12\/featured-image-preview.jpeg",
                             "width":  311 ,
                             "height":  202 
-                        }],"genre": "posts","keywords": "Web Service, SOAP","wordcount":  296 ,
-        "url": "http:\/\/gun9nir.me\/posts\/web-service-21-10-12\/","datePublished": "2021-10-12T15:33:48+08:00","dateModified": "2021-10-12T17:37:30+08:00","publisher": {
+                        }],"genre": "posts","keywords": "Web Service, SOAP","wordcount":  287 ,
+        "url": "http:\/\/gun9nir.me\/posts\/web-service-21-10-12\/","datePublished": "2021-10-12T15:33:48+08:00","dateModified": "2021-10-14T17:12:58+08:00","publisher": {
             "@type": "Organization",
             "name": "Gun9niR"},"author": {
                 "@type": "Person",
@@ -117,7 +117,7 @@ Detailed comparison
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">Web Service : First attempt</h2><div class="post-meta">
                 <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Gun9niR</a></span>&nbsp;<span class="post-category">published in <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
-                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-12">2021-10-12</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;296 words</span>&nbsp;
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-12">2021-10-12</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;287 words</span>&nbsp;
                     <span><i class="far fa-clock fa-fw"></i>&nbsp;2 minutes</span>&nbsp;</div>
             </div>
             
@@ -144,7 +144,7 @@ Detailed comparison
     </li>
   </ul>
 </nav></div>
-                </div><div class="content" id="content"><p>This article records my first attempt with web service, using <strong>React.js</strong> as client and <strong>Spring Boot</strong> as server in course SE3353.</p>
+                </div><div class="content" id="content"><p>This article records my first attempt with web service in course SE3353.</p>
 <h2 id="1-soap">1. SOAP</h2>
 <p>SOAP is an XML-based application-level protocol for accessing web services. It is normally sent on HTTP, but could be sent over SMTP or even FTP.</p>
 <p><a href="https://zhuanlan.zhihu.com/p/29819666" target="_blank" rel="noopener noreffer">Anatomy of SOAP protocol</a></p>
@@ -196,9 +196,10 @@ Detailed comparison
     <div class="post-info"><div class="post-info-tag"><span><a href="/tags/web-service/">Web Service</a>
                 </span><span><a href="/tags/soap/">SOAP</a>
                 </span></div><div class="post-info-line"><div class="post-info-mod">
-                <span>Updated on 2021-10-12</span>
+                <span>Updated on 2021-10-14</span>
             </div><div class="post-info-mod"></div>
-        </div></div><div class="post-nav"></div></div>
+        </div></div><div class="post-nav">
+            <a href="/posts/micro-service-21-10-15/" class="next" rel="next" title="Microservice: First attempt">Next Post<i class="fas fa-angle-right fa-fw"></i></a></div></div>
 </div></article></div>
             </main>
             <footer class="footer"><div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> | Theme - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>

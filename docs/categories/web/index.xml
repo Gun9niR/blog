@@ -3,16 +3,24 @@
         <title>Web - Category - Gun9niR</title>
         <link>http://gun9nir.me/categories/web/</link>
         <description>Web - Category - Gun9niR</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 12 Oct 2021 15:33:48 &#43;0800</lastBuildDate><atom:link href="http://gun9nir.me/categories/web/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</lastBuildDate><atom:link href="http://gun9nir.me/categories/web/" rel="self" type="application/rss+xml" /><item>
+    <title>Microservice: First attempt</title>
+    <link>http://gun9nir.me/posts/micro-service-21-10-15/</link>
+    <pubDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</pubDate><guid>http://gun9nir.me/posts/micro-service-21-10-15/</guid>
+    <description><![CDATA[This article records my first attempt with mircro-service using Netflix Eureka as service register and discovery center, and Spring cloud Gateway as the API gateway.
+P.S. It&rsquo;s so dumb that our instructor asked us to use Zuul as the gateway component, which has been deprecated since Spring Boot 2.
+1. Service discovery A distributed system typically comprises a large number of services which communicate with each other to perform certain operations.]]></description>
+</item>
+<item>
     <title>Web Service : First attempt</title>
     <link>http://gun9nir.me/posts/web-service-21-10-12/</link>
     <pubDate>Tue, 12 Oct 2021 15:33:48 &#43;0800</pubDate><guid>http://gun9nir.me/posts/web-service-21-10-12/</guid>
-    <description><![CDATA[This article records my first attempt with web service, using React.js as client and Spring Boot as server in course SE3353.
+    <description><![CDATA[This article records my first attempt with web service in course SE3353.
 1. SOAP SOAP is an XML-based application-level protocol for accessing web services. It is normally sent on HTTP, but could be sent over SMTP or even FTP.
 Anatomy of SOAP protocol
 1.1. SOAP vs REST They are not mutual-exclusive.
 Detailed comparison
-2. WSDL WSDL, or Web Service Description Language, is an XML based definition language.]]></description>
+2. WSDL WSDL, or Web Service Description Language, is an XML based definition language. It’s used for describing the functionality of a SOAP based web service, some important ones being:]]></description>
 </item>
 </channel>
 </rss>

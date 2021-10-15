@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Microservice: First attempt - Gun9niR</title><meta name="description" content="This is My New Hugo Site"><meta property="og:title" content="Microservice: First attempt" />
+<meta property="og:description" content="This article records my first attempt with mircro-service using Netflix Eureka as service register and discovery center, and Spring cloud Gateway as the API gateway.
+P.S. It&rsquo;s so dumb that our instructor asked us to use Zuul as the gateway component, which has been deprecated since Spring Boot 2.
+1. Service discovery A distributed system typically comprises a large number of services which communicate with each other to perform certain operations." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gun9nir.me/posts/micro-service-21-10-15/" /><meta property="og:image" content="http://gun9nir.me/posts/micro-service-21-10-15/featured-image-preview.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-15T00:32:26+08:00" />
+<meta property="article:modified_time" content="2021-10-15T00:32:26+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://gun9nir.me/posts/micro-service-21-10-15/featured-image-preview.png"/>
+<meta name="twitter:title" content="Microservice: First attempt"/>
+<meta name="twitter:description" content="This article records my first attempt with mircro-service using Netflix Eureka as service register and discovery center, and Spring cloud Gateway as the API gateway.
+P.S. It&rsquo;s so dumb that our instructor asked us to use Zuul as the gateway component, which has been deprecated since Spring Boot 2.
+1. Service discovery A distributed system typically comprises a large number of services which communicate with each other to perform certain operations."/>
+<meta name="application-name" content="Gun9niR">
+<meta name="apple-mobile-web-app-title" content="Gun9niR"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://gun9nir.me/posts/micro-service-21-10-15/" /><link rel="prev" href="http://gun9nir.me/posts/web-service-21-10-12/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Microservice: First attempt",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/gun9nir.me\/posts\/micro-service-21-10-15\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/gun9nir.me\/posts\/micro-service-21-10-15\/featured-image-preview.png",
+                            "width":  600 ,
+                            "height":  315 
+                        }],"genre": "posts","keywords": "Microservice, Service Discovery, API Gateway","wordcount":  513 ,
+        "url": "http:\/\/gun9nir.me\/posts\/micro-service-21-10-15\/","datePublished": "2021-10-15T00:32:26+08:00","dateModified": "2021-10-15T00:32:26+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Gun9niR"},"author": {
+                "@type": "Person",
+                "name": "Gun9niR"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Gun9niR">Gun9niR</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Gun9niR">Gun9niR</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">Microservice: First attempt</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Gun9niR</a></span>&nbsp;<span class="post-category">published in <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-15">2021-10-15</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;513 words</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;3 minutes</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>Contents</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-service-discovery">1. Service discovery</a>
+      <ul>
+        <li><a href="#11-what-is-eureka">1.1. What is Eureka</a></li>
+        <li><a href="#12-setting-up-eureka-in-spring-boot">1.2. Setting up Eureka in Spring Boot</a></li>
+        <li><a href="#122-microservice-as-client">1.2.2. Microservice as Client</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-spring-cloud-gateway">2. Spring Cloud Gateway</a>
+      <ul>
+        <li><a href="#21-how-gateway-works">2.1. How Gateway works</a></li>
+        <li><a href="#22-some-pitfalls-in-implementation">2.2. Some pitfalls in implementation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>This article records my first attempt with mircro-service using <strong>Netflix Eureka</strong> as service register and discovery center, and <strong>Spring cloud Gateway</strong> as the API gateway.</p>
+<p>P.S. It&rsquo;s so dumb that our instructor asked us to use Zuul as the gateway component, which has been deprecated since Spring Boot 2.</p>
+<h2 id="1-service-discovery">1. Service discovery</h2>
+<p>A distributed system typically comprises a large number of services which communicate with each other to perform certain operations. Service discovery is the process of one service <strong>dynamically discovering the network location (IP address and port) of another service to communicate with it</strong>.</p>
+<h3 id="11-what-is-eureka">1.1. What is Eureka</h3>
+<p>Eureka is a REST based service which is primarily used for acquiring information about services that you would want to communicate with. This REST service is also known as Eureka Server. The Services that register in Eureka Server to obtain information about each other are called Eureka Clients.</p>
+<p>The Eureka server knows all the client applications running on each port and IP address. When any of the Eureka clients want to communicate with another client, it can obtain the target IP address and the port via Eureka server.</p>
+<h3 id="12-setting-up-eureka-in-spring-boot">1.2. Setting up Eureka in Spring Boot</h3>
+<h4 id="121-server">1.2.1. Server</h4>
+<pre tabindex="0"><code class="language-properties" data-lang="properties"># Server port should be the same as service zone.
+server.port=8040
+
+spring.application.name=eureka-server
+
+eureka.instance.prefer-ip-address=true
+# No need to register the server itself.
+eureka.client.register-with-eureka=false
+eureka.client.fetch-registry=false
+eureka.client.service-url.defaultZone=http://localhost:8040/eureka
+</code></pre><h3 id="122-microservice-as-client">1.2.2. Microservice as Client</h3>
+<pre tabindex="0"><code class="language-properties" data-lang="properties">spring.application.name=...
+
+# Setting prefer-ip-address to false will register instance with hostname.
+eureka.instance.prefer-ip-address=true
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+eureka.client.service-url.defaultZone=http://localhost:8040/eureka
+</code></pre><h2 id="2-spring-cloud-gateway">2. Spring Cloud Gateway</h2>
+<h3 id="21-how-gateway-works">2.1. How Gateway works</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="./gateway.webp"
+        data-srcset="./gateway.webp, ./gateway.webp 1.5x, ./gateway.webp 2x"
+        data-sizes="auto"
+        alt="./gateway.webp"
+        title="Spring cloud gateway" /></p>
+<p>As the images shows, when the gateway client sends a request to the gateway, the Gateway Handler Mapping decides if the url hits any of the patterns, and Gateway Handler takes care of the actual forwarding. The request then goes through a bunch of pre-filters, gets processed by the proxied service, and goes back through a bunch of post-filters.</p>
+<h3 id="22-some-pitfalls-in-implementation">2.2. Some pitfalls in implementation</h3>
+<h4 id="use-service-discovery-to-avoid-hard-coded-service-url">Use service discovery to avoid hard-coded service url</h4>
+<p>With service discovery set up, we can just use service name to tell the gateway where to forward the request.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">RouteLocator</span> <span class="nf">routeLocator</span><span class="o">(</span><span class="n">RouteLocatorBuilder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">routes</span><span class="o">()</span>
+                      <span class="o">.</span><span class="na">route</span><span class="o">(&lt;</span><span class="n">route</span><span class="o">-</span><span class="n">id</span><span class="o">&gt;,</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span><span class="o">.</span><span class="na">path</span><span class="o">(&lt;</span><span class="n">pattern</span><span class="o">&gt;)</span>
+                      <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;lb://&lt;service-name&gt;&#34;</span><span class="o">))</span>
+                  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h4 id="url-strip-prefix">URL strip prefix</h4>
+<p>In the scenario of Spring Cloud Gateway, the URI is forwarded <strong>in its entirety</strong> by default. This means the service name, which is normally intended only for identification of service, will also be included in the forwarded URI. To strip the service name, in java code we can add:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">RouteLocator</span> <span class="nf">routeLocator</span><span class="o">(</span><span class="n">RouteLocatorBuilder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">routes</span><span class="o">()</span>
+                      <span class="o">.</span><span class="na">route</span><span class="o">(&lt;</span><span class="n">route</span><span class="o">-</span><span class="n">id</span><span class="o">&gt;,</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span><span class="o">.</span><span class="na">path</span><span class="o">(&lt;</span><span class="n">pattern</span><span class="o">&gt;)</span>
+                      <span class="o">.</span><span class="na">filters</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">stripPrefix</span><span class="o">(</span><span class="n">1</span><span class="o">))</span>
+                      <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;lb://&lt;service-name&gt;&#34;</span><span class="o">))</span>
+                  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>The parameter in <code>stripPrefix</code> indicates how many back slash separated segments of uri should be removed.</p>
+<h4 id="deduplicate-cors-headers">Deduplicate CORS headers</h4>
+<p>If both the gateway and the servie has added CORS headers to the response, then the error</p>
+<blockquote>
+<p>The &lsquo;Access-Control-Allow-Origin&rsquo; header contains multiple values &lsquo;&hellip;&rsquo;, but only one is allowed.</p>
+</blockquote>
+<p>will be reported. This means we should only retain one set of CORS headers in the response by deduplication:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">RouteLocator</span> <span class="nf">routeLocator</span><span class="o">(</span><span class="n">RouteLocatorBuilder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="na">routes</span><span class="o">()</span>
+                      <span class="o">.</span><span class="na">route</span><span class="o">(&lt;</span><span class="n">route</span><span class="o">-</span><span class="n">id</span><span class="o">&gt;,</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="n">r</span><span class="o">.</span><span class="na">path</span><span class="o">(&lt;</span><span class="n">pattern</span><span class="o">&gt;)</span>
+                      <span class="o">.</span><span class="na">filters</span><span class="o">(</span><span class="n">f</span> <span class="o">-&gt;</span> <span class="n">f</span><span class="o">.</span><span class="na">stripPrefix</span><span class="o">(</span><span class="n">1</span><span class="o">)</span>
+                          <span class="o">.</span><span class="na">dedupeResponseHeader</span><span class="o">(</span><span class="s">&#34;Access-Control-Allow-Credentials&#34;</span><span class="o">,</span> <span class="s">&#34;RETAIN_FIRST&#34;</span><span class="o">)</span>
+                          <span class="o">.</span><span class="na">dedupeResponseHeader</span><span class="o">(</span><span class="s">&#34;Access-Control-Allow-Origin&#34;</span><span class="o">,</span> <span class="s">&#34;RETAIN_FIRST&#34;</span><span class="o">)))</span>
+                      <span class="o">.</span><span class="na">uri</span><span class="o">(</span><span class="s">&#34;lb://&lt;service-name&gt;&#34;</span><span class="o">))</span>
+                  <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/microservice/">Microservice</a>
+                </span><span><a href="/tags/service-discovery/">Service Discovery</a>
+                </span><span><a href="/tags/api-gateway/">API Gateway</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>Updated on 2021-10-15</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/web-service-21-10-12/" class="prev" rel="prev" title="Web Service : First attempt"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> | Theme - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/lightgallery/lightgallery.min.js"></script><script src="/lib/lightgallery/lg-thumbnail.min.js"></script><script src="/lib/lightgallery/lg-zoom.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>

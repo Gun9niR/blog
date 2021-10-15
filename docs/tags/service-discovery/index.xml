@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Service Discovery - Tag - Gun9niR</title>
+        <link>http://gun9nir.me/tags/service-discovery/</link>
+        <description>Service Discovery - Tag - Gun9niR</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</lastBuildDate><atom:link href="http://gun9nir.me/tags/service-discovery/" rel="self" type="application/rss+xml" /><item>
+    <title>Microservice: First attempt</title>
+    <link>http://gun9nir.me/posts/micro-service-21-10-15/</link>
+    <pubDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</pubDate><guid>http://gun9nir.me/posts/micro-service-21-10-15/</guid>
+    <description><![CDATA[This article records my first attempt with mircro-service using Netflix Eureka as service register and discovery center, and Spring cloud Gateway as the API gateway.
+P.S. It&rsquo;s so dumb that our instructor asked us to use Zuul as the gateway component, which has been deprecated since Spring Boot 2.
+1. Service discovery A distributed system typically comprises a large number of services which communicate with each other to perform certain operations.]]></description>
+</item>
+</channel>
+</rss>

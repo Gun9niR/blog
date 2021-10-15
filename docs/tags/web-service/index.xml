@@ -7,12 +7,12 @@
     <title>Web Service : First attempt</title>
     <link>http://gun9nir.me/posts/web-service-21-10-12/</link>
     <pubDate>Tue, 12 Oct 2021 15:33:48 &#43;0800</pubDate><guid>http://gun9nir.me/posts/web-service-21-10-12/</guid>
-    <description><![CDATA[This article records my first attempt with web service, using React.js as client and Spring Boot as server in course SE3353.
+    <description><![CDATA[This article records my first attempt with web service in course SE3353.
 1. SOAP SOAP is an XML-based application-level protocol for accessing web services. It is normally sent on HTTP, but could be sent over SMTP or even FTP.
 Anatomy of SOAP protocol
 1.1. SOAP vs REST They are not mutual-exclusive.
 Detailed comparison
-2. WSDL WSDL, or Web Service Description Language, is an XML based definition language.]]></description>
+2. WSDL WSDL, or Web Service Description Language, is an XML based definition language. It’s used for describing the functionality of a SOAP based web service, some important ones being:]]></description>
 </item>
 </channel>
 </rss>

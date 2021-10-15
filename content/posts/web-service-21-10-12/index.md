@@ -12,7 +12,7 @@ categories: ["Web"]
 lightgallery: true
 ---
 
-This article records my first attempt with web service, using **React.js** as client and **Spring Boot** as server in course SE3353.
+This article records my first attempt with web service in course SE3353.
 
 ## 1. SOAP
 

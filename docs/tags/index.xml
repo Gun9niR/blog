@@ -3,7 +3,25 @@
         <title>Tags - Tag - Gun9niR</title>
         <link>http://gun9nir.me/tags/</link>
         <description>Tags - Tag - Gun9niR</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 12 Oct 2021 15:33:48 &#43;0800</lastBuildDate><atom:link href="http://gun9nir.me/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</lastBuildDate><atom:link href="http://gun9nir.me/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>API Gateway</title>
+    <link>http://gun9nir.me/tags/api-gateway/</link>
+    <pubDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</pubDate><guid>http://gun9nir.me/tags/api-gateway/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Microservice</title>
+    <link>http://gun9nir.me/tags/microservice/</link>
+    <pubDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</pubDate><guid>http://gun9nir.me/tags/microservice/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Service Discovery</title>
+    <link>http://gun9nir.me/tags/service-discovery/</link>
+    <pubDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</pubDate><guid>http://gun9nir.me/tags/service-discovery/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>SOAP</title>
     <link>http://gun9nir.me/tags/soap/</link>
     <pubDate>Tue, 12 Oct 2021 15:33:48 &#43;0800</pubDate><guid>http://gun9nir.me/tags/soap/</guid>
