@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Docker - Tag - Gun9niR</title>
+        <link>http://gun9nir.me/tags/docker/</link>
+        <description>Docker - Tag - Gun9niR</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 30 Nov 2021 14:08:59 &#43;0800</lastBuildDate><atom:link href="http://gun9nir.me/tags/docker/" rel="self" type="application/rss+xml" /><item>
+    <title>Dockerize Bookstore System</title>
+    <link>http://gun9nir.me/posts/docker-bookstore-21-11-30/</link>
+    <pubDate>Tue, 30 Nov 2021 14:08:59 &#43;0800</pubDate><guid>http://gun9nir.me/posts/docker-bookstore-21-11-30/</guid>
+    <description><![CDATA[The bookstore project is not officially finished, so a lot of changes might happen. Github link for the entire project will be available after the project is concluded.
+0. Why? As a wealth of components are being added to my bookstore system, it is growing increasingly complex, putting forward a few problems.
+ Multiple middlewares and databases clutter up local storage, with configuration files, log files, data files scattered all over the place.]]></description>
+</item>
+</channel>
+</rss>

@@ -3,9 +3,17 @@
         <title>Gun9niR</title>
         <link>http://gun9nir.me/</link>
         <description>This is My New Hugo Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 30 Nov 2021 14:08:59 &#43;0800</lastBuildDate>
             <atom:link href="http://gun9nir.me/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Dockerize Bookstore System</title>
+    <link>http://gun9nir.me/posts/docker-bookstore-21-11-30/</link>
+    <pubDate>Tue, 30 Nov 2021 14:08:59 &#43;0800</pubDate><guid>http://gun9nir.me/posts/docker-bookstore-21-11-30/</guid>
+    <description><![CDATA[The bookstore project is not officially finished, so a lot of changes might happen. Github link for the entire project will be available after the project is concluded.
+0. Why? As a wealth of components are being added to my bookstore system, it is growing increasingly complex, putting forward a few problems.
+ Multiple middlewares and databases clutter up local storage, with configuration files, log files, data files scattered all over the place.]]></description>
+</item>
+<item>
     <title>Microservice: First attempt</title>
     <link>http://gun9nir.me/posts/micro-service-21-10-15/</link>
     <pubDate>Fri, 15 Oct 2021 00:32:26 &#43;0800</pubDate><guid>http://gun9nir.me/posts/micro-service-21-10-15/</guid>

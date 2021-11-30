@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Dockerize Bookstore System - Gun9niR</title><meta name="description" content="This is My New Hugo Site"><meta property="og:title" content="Dockerize Bookstore System" />
+<meta property="og:description" content="The bookstore project is not officially finished, so a lot of changes might happen. Github link for the entire project will be available after the project is concluded.
+0. Why? As a wealth of components are being added to my bookstore system, it is growing increasingly complex, putting forward a few problems.
+ Multiple middlewares and databases clutter up local storage, with configuration files, log files, data files scattered all over the place." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://gun9nir.me/posts/docker-bookstore-21-11-30/" /><meta property="og:image" content="http://gun9nir.me/posts/docker-bookstore-21-11-30/featured-image-preview.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-30T14:08:59+08:00" />
+<meta property="article:modified_time" content="2021-11-30T14:08:59+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://gun9nir.me/posts/docker-bookstore-21-11-30/featured-image-preview.png"/>
+<meta name="twitter:title" content="Dockerize Bookstore System"/>
+<meta name="twitter:description" content="The bookstore project is not officially finished, so a lot of changes might happen. Github link for the entire project will be available after the project is concluded.
+0. Why? As a wealth of components are being added to my bookstore system, it is growing increasingly complex, putting forward a few problems.
+ Multiple middlewares and databases clutter up local storage, with configuration files, log files, data files scattered all over the place."/>
+<meta name="application-name" content="Gun9niR">
+<meta name="apple-mobile-web-app-title" content="Gun9niR"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://gun9nir.me/posts/docker-bookstore-21-11-30/" /><link rel="prev" href="http://gun9nir.me/posts/micro-service-21-10-15/" /><link rel="stylesheet" href="/css/page.min.css"><link rel="stylesheet" href="/css/home.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Dockerize Bookstore System",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/gun9nir.me\/posts\/docker-bookstore-21-11-30\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "http:\/\/gun9nir.me\/posts\/docker-bookstore-21-11-30\/featured-image-preview.png",
+                            "width":  296 ,
+                            "height":  170 
+                        }],"genre": "posts","keywords": "Docker","wordcount":  1057 ,
+        "url": "http:\/\/gun9nir.me\/posts\/docker-bookstore-21-11-30\/","datePublished": "2021-11-30T14:08:59+08:00","dateModified": "2021-11-30T14:08:59+08:00","publisher": {
+            "@type": "Organization",
+            "name": "Gun9niR"},"author": {
+                "@type": "Person",
+                "name": "Gun9niR"
+            },"description": ""
+    }
+    </script></head><body data-header-desktop="" data-header-mobile=""><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Gun9niR">Gun9niR</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Gun9niR">Gun9niR</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/about/" title="">About</a><div class="menu-item"><a href="javascript:void(0);" class="theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div></div>
+    </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single" data-toc="disable"><div class="single-card" ><h2 class="single-title animated flipInX">Dockerize Bookstore System</h2><div class="post-meta">
+                <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Gun9niR</a></span>&nbsp;<span class="post-category">published in <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
+                <div class="post-meta-line"><span><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-30">2021-11-30</time></span>&nbsp;<span><i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1057 words</span>&nbsp;
+                    <span><i class="far fa-clock fa-fw"></i>&nbsp;5 minutes</span>&nbsp;</div>
+            </div>
+            
+            <hr><div class="details toc" id="toc-static"  data-kept="">
+                    <div class="details-summary toc-title">
+                        <span>Contents</span>
+                        <span><i class="details-icon fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0-why">0. Why?</a></li>
+    <li><a href="#1-bookstore-system-components">1. Bookstore system components</a></li>
+    <li><a href="#2-building--deployment-overview">2. Building &amp; Deployment overview</a></li>
+    <li><a href="#3-building-self-written-code">3. Building self-written code</a></li>
+    <li><a href="#4-building-images">4. Building images</a></li>
+    <li><a href="#5-communication-among-containers">5. Communication among containers</a></li>
+    <li><a href="#6-dockerize-components">6. Dockerize components</a>
+      <ul>
+        <li><a href="#61-postgresql">6.1. PostgreSQL</a></li>
+        <li><a href="#62-mongodb">6.2. MongoDB</a></li>
+        <li><a href="#63-neo4j">6.3. Neo4j</a></li>
+        <li><a href="#64-elasticsearch">6.4. ElasticSearch</a></li>
+        <li><a href="#65-redis">6.5. Redis</a></li>
+        <li><a href="#66-rabbitmq">6.6. RabbitMQ</a></li>
+        <li><a href="#67-spring-cloud-gateway">6.7. Spring Cloud Gateway</a></li>
+        <li><a href="#68-eureka">6.8. Eureka</a></li>
+        <li><a href="#69-logstash">6.9. Logstash</a></li>
+        <li><a href="#610-main-service">6.10. Main service</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-deploy">7. Deploy</a></li>
+  </ul>
+</nav></div>
+                </div><div class="content" id="content"><p>The bookstore project is not officially finished, so a lot of changes might happen. Github link for the entire project will be available after the project is concluded.</p>
+<h2 id="0-why">0. Why?</h2>
+<p>As a wealth of components are being added to my bookstore system, it is growing increasingly complex, putting forward a few problems.</p>
+<ul>
+<li>Multiple middlewares and databases clutter up local storage, with configuration files, log files, data files scattered all over the place.</li>
+<li>The project becomes unwieldy to deploy. Even if I have most components automatically launch as a service at computer startup, I still have to open 3 Springboot projects, and launch them one by one.</li>
+<li>Because a locally installed middleware/database can only have one configuration file at a time, it is very difficult to use it for many applications simultaneously.</li>
+</ul>
+<p>In light of these shortcomings, I resort to Docker, which provides a convenient solution to them all.</p>
+<h2 id="1-bookstore-system-components">1. Bookstore system components</h2>
+<p>Just to obtain a big picture, my Bookstore system consist of the following components:</p>
+<ul>
+<li>Databases
+<ul>
+<li>PostgreSQL (primary storage, with primary and backup)</li>
+<li>MongoDB (book description)</li>
+<li>Neo4j (book tags)</li>
+<li>ElasticSearch (full-text search)</li>
+<li>Redis (cache)</li>
+</ul>
+</li>
+<li>Middleware
+<ul>
+<li>RabbitMQ (asynchronous communication)</li>
+<li><em>Spring Cloud Gateway</em> (HTTPS and load balancing)</li>
+<li><em>Eureka</em> (service discovery)</li>
+<li>Logstash (synchronize data between PostgreSQL and ES)</li>
+</ul>
+</li>
+<li>Application
+<ul>
+<li><em>Springboot main service</em></li>
+</ul>
+</li>
+</ul>
+<p>Some of these components have readily available images, while others warrant the use of Dockerfile, which is basically a file that specifies how an image should be built.</p>
+<h2 id="2-building--deployment-overview">2. Building &amp; Deployment overview</h2>
+<p>The ultimate goal is to make the building and deployment process a one-or-two-liner, so I want as few files as possible for each stage. There are mainly three stages:</p>
+<ol>
+<li>Build any self-written code, which is all in Java, using <strong>maven</strong></li>
+<li>Build Docker images if necessary, using one <strong>Dockerfile</strong></li>
+<li>Deploy Docker containers either from self-made images or those from Docker Hub, using **.</li>
+</ol>
+<p>The file structure of my project looks like this</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">├── config
+│   └── ...
+├── db
+│   └── ...
+├── eureka
+│   └── ...
+├── gateway
+│   └── ...
+├── main-service
+│   └── ...
+├── shared-data-access
+│   └── ...
+├── build.sh
+├── Dockerfile
+├── docker-compose.yml
+├── pom.xml
+</code></pre></div><p>where:</p>
+<ul>
+<li><code>config</code> stores configuration file and scripts for containers</li>
+<li><code>db</code> stores persistent data</li>
+<li><code>eureka</code>, <code>gateway</code>, <code>main-service</code>, <code>shared-data-access</code> are java modules to be built with <code>pom.xml</code></li>
+<li><code>build.sh</code> builds above Java modules and generate images with <code>Dockerfile</code></li>
+<li><code>docker-compose.yml</code> deploys the entire system</li>
+</ul>
+<h2 id="3-building-self-written-code">3. Building self-written code</h2>
+<p>This is easily achievable with a one-liner:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mvn clean install -Dmaven.test.skip<span class="o">=</span><span class="nb">true</span> -pl eureka,gateway,main-service -am
+</code></pre></div><p><code>-Dmaven.test.skip=true</code> skips the tests, as some modules will not be able to pass the test (database connection failer) after their configuration files are modified for use within Docker container. <code>pl</code> specifies specific modules to build rather than the whole project, <code>-am</code> means also build projects required by building modules. <a href="https://stackoverflow.com/questions/1114026/maven-modules-building-a-single-specific-module" target="_blank" rel="noopener noreffer">Reference</a></p>
+<h2 id="4-building-images">4. Building images</h2>
+<p>Had I been on an amd64 machine, this will be another one-liner, as <code>spring-boot-maven-plugin</code> takes care of it all. On an amd64 machine, just run</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">spring-boot:build-image -f pom.xml
+</code></pre></div><p>But the images generated by this command do not run on arm64 machin for some jdk incompatibility issues. So we need to define our own base image intended for arm64 machine. Luckily, <a href="https://hub.docker.com/r/arm64v8/openjdk" target="_blank" rel="noopener noreffer">this page</a> contains various jdk images for arm64. With that in place, a <strong>Dockerfile</strong> can now be written to build the images. Assue all <code>jar</code> files have been built.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="k">FROM</span><span class="s"> arm64v8/openjdk:17-jdk-oraclelinux7 as eureka</span><span class="err">
+</span><span class="err"></span><span class="k">ADD</span> ./eureka/target/*.jar /eureka.jar<span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 8040</span><span class="err">
+</span><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;/eureka.jar&#34;</span><span class="p">]</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">FROM</span><span class="s"> arm64v8/openjdk:17-jdk-oraclelinux7 as gateway</span><span class="err">
+</span><span class="err"></span><span class="k">ADD</span> ./gateway/src/main/resources/keystore.p12 /keystore.p12<span class="err">
+</span><span class="err"></span><span class="k">ADD</span> ./gateway/target/*.jar /gateway.jar<span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 8090</span><span class="err">
+</span><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;/gateway.jar&#34;</span><span class="p">]</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="k">FROM</span><span class="s"> arm64v8/openjdk:17-jdk-oraclelinux7 as main-service</span><span class="err">
+</span><span class="err"></span><span class="k">ADD</span> ./main-service/target/*.jar /bookstore.jar<span class="err">
+</span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 8080</span><span class="err">
+</span><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span> <span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;/bookstore.jar&#34;</span><span class="p">]</span><span class="err">
+</span></code></pre></div><p>The Dockerfile can be executed with a script to be executed under project root directory.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker build --target eureka -t gun9nir/bookstore.eureka .
+docker build --target gateway -t gun9nir/bookstore.gateway .
+docker build --target main-service -t gun9nir/bookstore.main-service .
+</code></pre></div><h2 id="5-communication-among-containers">5. Communication among containers</h2>
+<p><a href="https://docs.docker.com/compose/networking/" target="_blank" rel="noopener noreffer">Reference</a></p>
+<p>An important advantage of Docker Compose over separate <code>docker run</code> commands is:</p>
+<blockquote>
+<p>By default Compose sets up a single network for your app. Each container for a service joins the default network and is both reachable by other containers on that network, and discoverable by them at a hostname identical to the container name.</p>
+</blockquote>
+<p>But since containers communicate with each other via conatiner name, the configuration files of each compoenent has to be changed, with ip/localhost changed to container name.</p>
+<h2 id="6-dockerize-components">6. Dockerize components</h2>
+<h3 id="61-postgresql">6.1. PostgreSQL</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">postgresql-primary</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-postgresql-primary</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;5432:5432&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">POSTGRES_USER=gun9nir</span><span class="w">
+</span><span class="w">      </span>- <span class="l">POSTGRES_PASSWORD=guozhidong12</span><span class="w">
+</span><span class="w">      </span>- <span class="l">POSTGRES_DB=bookstore</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/postgres-primary/postgresql.conf:/etc/postgresql/postgresql.conf</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/postgres-primary/pg_hba.conf:/etc/postgresql/pg_hba.conf</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./db/postgresql-primary/data:/var/lib/postgresql/data</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/postgres-primary/create_replicator.sh:/docker-entrypoint-initdb.d/create_replicator.sh</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">postgres -c config_file=/etc/postgresql/postgresql.conf -c hba_file=/etc/postgresql/pg_hba.conf</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">postgresql-backup</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">postgres</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-postgresql-backup</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;5433:5432&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span>-<span class="l">failure</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">POSTGRES_USER=gun9nir</span><span class="w">
+</span><span class="w">      </span>- <span class="l">POSTGRES_PASSWORD=guozhidong12</span><span class="w">
+</span><span class="w">      </span>- <span class="l">POSTGRES_DB=bookstore</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/postgres-backup/postgresql.conf:/etc/postgresql/postgresql.conf</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/postgres-backup/pg_hba.conf:/etc/postgresql/pg_hba.conf</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./db/postgresql-backup/data:/var/lib/postgresql/data</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/postgres-backup/init_backup.sh:/docker-entrypoint-initdb.d/init_backup.sh</span><span class="w">
+</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">postgres -c config_file=/etc/postgresql/postgresql.conf -c hba_file=/etc/postgresql/pg_hba.conf</span><span class="w">
+</span></code></pre></div><p>A primary-backup configuration is adopted for high availability. To achieve that, in <code>config</code> directory are stored the respective configuration files and scripts for primary and backup. Two scripts are worth mentioning:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+psql -v <span class="nv">ON_ERROR_STOP</span><span class="o">=</span><span class="m">1</span> --username gun9nir --dbname bookstore <span class="s">&lt;&lt;-EOSQL
+</span><span class="s">    CREATE USER replicator;
+</span><span class="s">    ALTER USER replicator WITH REPLICATION;
+</span><span class="s">EOSQL</span>
+</code></pre></div><p>This script is run after primary database is created. It creates a replication user which has <em>replication privilege</em> to <code>bookstore</code>. Backups should use this user to initiate backup.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+rm -rf /var/lib/postgresql/data/*
+pg_basebackup -h postgresql-primary -D /var/lib/postgresql/data -U replicator -v -P -R
+</code></pre></div><p>This script is run after backup database is created. The data directory is cleard first, then the intial backup command is executed. The meaning of each argument is <a href="https://www.postgresql.org/docs/14/app-pgbasebackup.html" target="_blank" rel="noopener noreffer">here</a>. The most vital argument is <code>-R</code>. The containers automatically exit after first backup, thus the <code>restart: on-failure</code> option in Docker Compose file.</p>
+<h3 id="62-mongodb">6.2. MongoDB</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">mongodb</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mongo</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-mongodb</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;27017:27017&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">MONGO_INITDB_ROOT_USERNAME=&lt;username&gt;</span><span class="w">
+</span><span class="w">      </span>- <span class="l">MONGO_INITDB_ROOT_PASSWORD=&lt;pwd&gt;</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./db/mongodb/data/db:/data/db</span><span class="w">
+</span></code></pre></div><h3 id="63-neo4j">6.3. Neo4j</h3>
+<p>The official image of Neo4j does not support arm64 architecture, so an experimental version is used.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">neo4j</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">neo4j/neo4j-arm64-experimental:4.1.11-arm64</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-neo4j</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;7474:7474&#34;</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;7473:7473&#34;</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;7687:7687&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">NEO4J_AUTH=&lt;username&gt;/&lt;pwd&gt;</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./db/neo4j/data:/data</span><span class="w">
+</span></code></pre></div><h3 id="64-elasticsearch">6.4. ElasticSearch</h3>
+<p>ES is very demanding in terms of memory. So extra settings are required.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">elasticsearch</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.elastic.co/elasticsearch/elasticsearch:7.15.0</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-elasticsearch</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> 
+</span><span class="w">      </span>- <span class="s2">&#34;9200:9200&#34;</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;9300:9300&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span>-<span class="l">failure</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">discovery.type=single-node</span><span class="w">
+</span><span class="w">      </span>- <span class="l">xpack.security.enabled=true</span><span class="w">
+</span><span class="w">      </span>- <span class="l">ELASTIC_PASSWORD=guozhidong12</span><span class="w">
+</span><span class="w">      </span>- <span class="l">ES_JAVA_OPTS=-Xms512m -Xmx512m -XX:MaxMetaspaceSize=128m</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./db/elasticsearch/data:/usr/share/elasticsearch/data</span><span class="w">
+</span><span class="w">    </span><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">1024M</span><span class="w">
+</span></code></pre></div><h3 id="65-redis">6.5. Redis</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">redis</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">redis</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">redis</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;6379:6379&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./db/redis:/data</span><span class="w">
+</span></code></pre></div><h3 id="66-rabbitmq">6.6. RabbitMQ</h3>
+<p>The <code>management</code> tag downloads rabbitmq with graphics interface enabled.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">rabbitmq</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">rabbitmq:management</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-rabbitmq</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w"> 
+</span><span class="w">      </span>- <span class="s2">&#34;5672:5672&#34;</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;15672:15672&#34;</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">RABBITMQ_DEFAULT_USER=gun9nir</span><span class="w">
+</span><span class="w">      </span>- <span class="l">RABBITMQ_DEFAULT_PASS=guozhidong12</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./db/rabbitmq/data:/var/lib/rabbitmq</span><span class="w">
+</span></code></pre></div><h3 id="67-spring-cloud-gateway">6.7. Spring Cloud Gateway</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">gateway</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/gun9nir/bookstore.gateway:latest</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-gateway</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;8090:8090&#34;</span><span class="w">
+</span></code></pre></div><p>One pitfall: the location of <em>keystore</em> file used by HTTPS in specified in <code>application.yml</code>, which cannot refer to anything within a jar file. So the keystore file needs to be copied into the image, thus <code>ADD ./gateway/src/main/resources/keystore.p12 /keystore.p12</code> in Dockerfile.</p>
+<h3 id="68-eureka">6.8. Eureka</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">eureka</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/gun9nir/bookstore.eureka:latest</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-eureka</span><span class="w">
+</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="s2">&#34;8040:8040&#34;</span><span class="w">
+</span></code></pre></div><h3 id="69-logstash">6.9. Logstash</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">logstash</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.elastic.co/logstash/logstash:7.15.2</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-logstash</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span>-<span class="l">failure</span><span class="w">
+</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">XPACK_MONITORING_ELASTICSEARCH_HOSTS=http://bookstore-elasticsearch:9200</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/logstash/pipelines.yml:/usr/share/logstash/config/pipelines.yml</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/logstash/pipeline:/usr/share/logstash/pipeline</span><span class="w">
+</span><span class="w">      </span>- <span class="l">./config/logstash/postgresql-42.2.24.jar:/usr/share/logstash/logstash-core/lib/jars/postgresql-42.2.24.jar</span><span class="w">
+</span></code></pre></div><h3 id="610-main-service">6.10. Main service</h3>
+<p>There are two instances of main service, just to utilize the load balancing feature provided by gateway. Main service relies on ES to start properly, but ES takes extremely long to start, thus the timeout, and <code>restart: on-failure:3</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="w">  </span><span class="nt">bookstore-1</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gun9nir/bookstore.main-service</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-main-service-1</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span>-<span class="l">failure:3</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span><span class="nt">bookstore-2</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gun9nir/bookstore.main-service</span><span class="w">
+</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">bookstore-main-service-2</span><span class="w">
+</span><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span>-<span class="l">failure:3</span><span class="w">
+</span></code></pre></div><h2 id="7-deploy">7. Deploy</h2>
+<p>With all the preparations, building and deploying the project boils down to two commands.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">bash ./build.sh
+docker compose up -d
+</code></pre></div></div><div class="post-footer" id="post-footer">
+    <div class="post-info"><div class="post-info-tag"><span><a href="/tags/docker/">Docker</a>
+                </span></div><div class="post-info-line"><div class="post-info-mod">
+                <span>Updated on 2021-11-30</span>
+            </div><div class="post-info-mod"></div>
+        </div></div><div class="post-nav"><a href="/posts/micro-service-21-10-15/" class="prev" rel="prev" title="Microservice: First attempt"><i class="fas fa-angle-left fa-fw"></i>Previous Post</a></div></div>
+</div></article></div>
+            </main>
+            <footer class="footer"><div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> | Theme - <a href="https://github.com/khusika/FeelIt" target="_blank" rel="noopener noreffer" title="FeelIt 1.0.1"><i class="fas fa-hand-holding-heart fa-fw"></i> FeelIt</a>
+        </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/"></a></span></div>
+</div>
+</footer>
+        </div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-chevron-up fa-fw"></i>
+            </a></div><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script src="/lib/autocomplete/autocomplete.min.js"></script><script src="/lib/lunr/lunr.min.js"></script><script src="/lib/lazysizes/lazysizes.min.js"></script><script src="/lib/lightgallery/lightgallery.min.js"></script><script src="/lib/lightgallery/lg-thumbnail.min.js"></script><script src="/lib/lightgallery/lg-zoom.min.js"></script><script src="/lib/clipboard/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body></html>
