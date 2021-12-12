@@ -18,8 +18,6 @@ September 2019 — June 2023 (Expected)
 
 Shanghai, China
 
-Currently rank 1/99 (92.285/100)
-
 GPA 92.285/100 (or 4.0255/4.3), Rank 1/99
 
 - Important courses
@@ -55,7 +53,7 @@ Shanghai, China
 - [LSM](https://github.com/Gun9niR/LSM) -- LSM KV store
 - [Ray tracer](https://github.com/Gun9niR/Ray-Tracer-in-Cpp) -- A basic ray tracer with antialiasing, defocus blur, motion blur, light source, importance sampling
 - [Kilo](https://github.com/Gun9niR/Kilo) -- A minial text editor that runs on terminal
-- Comment Overflow (Code to be tidied up) -- A cross-platform online forum mobile APP
+- Comment Overflow (Code to be tidied up) -- A cross-platform forum APP
 
 ## Skill
 
@@ -63,21 +61,20 @@ Shanghai, China
 
 Java, C++, JavaScript, C, Dart
 
-### Middleware & Framework & Other techs
+### Development Skills
 
-- Mobile APP development: Android native (Java), Flutter
-- Web server: NGINX
-- Web frontend: React
-- Web backend: Spring Boot
-- Database: MySQL, PostgreSQL, Redis, ElasticSearch
-- Messaging: RabbitMQ
-- DevOps: Docker, Prometheus, Loki, Grafana
-- Desktop APP development: Qt
+- Mobile APP development : Android native (Java), Flutter
+- Web server : NGINX
+- Web frontend : React
+- Web backend : Spring Boot
+- Database : MySQL, PostgreSQL, Redis, ElasticSearch, Neo4j, MongoDB
+- Messaging : RabbitMQ
+- DevOps : Docker, Prometheus, Loki, Grafana, Logstash
+- Desktop APP development : Qt
 
 ### English
 
 - CET-4: 664/710 (Top 1%)
+- CET-6: Coming soon
 - TOEFL: TBD
 - GRE: TBD
-
-P.S. I cannot say I'm proficient with any of these techs, I have **used** them in my projects, that is all.
