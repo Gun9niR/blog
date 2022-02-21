@@ -18,17 +18,24 @@ September 2019 — June 2023 (Expected)
 
 Shanghai, China
 
-GPA 92.285/100 (or 4.0255/4.3), Rank 1/99
+GPA 92.369/100 (or 4.03/4.3), Rank 1/99
 
 - Important courses
   - (98/100) CS154: Thinking and Approach of Programming
   - (96/100) CS149: Data Structure
-  - (95/100) SE123: Principle and practice of software engineering
+  - (97/100) SE127: Software Basic Practice
+  - (95/100) SE123: Principle and Practice of Software Engineering
+  - (99/100) SE119: Introduction to Computer Systems (Assembly)
   - (95/100) SE119: Introduction to Computer Systems (Organization)
   - (94/100) SE120: Introduction to Computer Systems (System Software)
   - (97/100) SE2321: Development of Internet Application
   - (90/100) SE2322: Advanced Data Structure
   - (90/100) SE128: Design and development of Internet products
+  - (95/100) SE124: Computer System Engineering
+  - (95/100) SE3355: Compilers
+  - (98/100) SE3353: Architecture of Application Systems
+  - (91/100) SE125: Machine Learning
+  - (90/100) SE3352: Algorithm Design
 - Other courses
   - (96/100) ME116: Introduction to Engineering
   - (99/100) EI203: Fundamental Circuit Theory
@@ -55,26 +62,16 @@ Shanghai, China
 - [Kilo](https://github.com/Gun9niR/Kilo) -- A minial text editor that runs on terminal
 - Comment Overflow (Code to be tidied up) -- A cross-platform forum APP
 
-## Skill
+## Skills
 
 ### Programming Languages
 
-Java, C++, JavaScript, C, Dart
+C++, Java, JavaScript, Python, Dart
 
 ### Development Skills
 
-- Mobile APP development : Android native (Java), Flutter
-- Web server : NGINX
-- Web frontend : React
-- Web backend : Spring Boot
-- Database : MySQL, PostgreSQL, Redis, ElasticSearch, Neo4j, MongoDB
-- Messaging : RabbitMQ
-- DevOps : Docker, Prometheus, Loki, Grafana, Logstash
-- Desktop APP development : Qt
+Mobile Development (Flutter, Android native), Databases (MySQL, PostgreSQL, Redis, etc), Front-end (React), Back-end (Spring Boot), Messaging (RabbitMQ), DevOps (Docker, Prometheus, Loki, etc)
 
 ### English
 
 - CET-4: 664/710 (Top 1%)
-- CET-6: Coming soon
-- TOEFL: TBD
-- GRE: TBD
