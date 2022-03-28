@@ -53,6 +53,13 @@ September 2016 — June 2019
 
 Shanghai, China
 
+## Intership Experience
+
+### Metabit Trading
+
+  Data System Engineering Intern, Data Infra Team, Feb 2022 - Now
+  - Project WIP
+
 ## Projects
 
 - [Basic](https://github.com/Gun9niR/Basic) -- An elementary interpreter with GUI
