@@ -58,6 +58,7 @@ Shanghai, China
 ### Metabit Trading
 
   Data System Engineering Intern, Data Infra Team, Feb 2022 - Now
+
   - Project WIP
 
 ## Projects
@@ -67,7 +68,7 @@ Shanghai, China
 - [LSM](https://github.com/Gun9niR/LSM) -- LSM KV store
 - [Ray tracer](https://github.com/Gun9niR/Ray-Tracer-in-Cpp) -- A basic ray tracer with antialiasing, defocus blur, motion blur, light source, importance sampling
 - [Kilo](https://github.com/Gun9niR/Kilo) -- A minial text editor that runs on terminal
-- Comment Overflow (Code to be tidied up) -- A cross-platform forum APP
+- [Comment Overflow](https://github.com/Comment-Overflow) -- A cross-platform forum APP
 
 ## Skills
 
@@ -78,7 +79,3 @@ C++, Java, JavaScript, Python, Dart
 ### Development Skills
 
 Mobile Development (Flutter, Android native), Databases (MySQL, PostgreSQL, Redis, etc), Front-end (React), Back-end (Spring Boot), Messaging (RabbitMQ), DevOps (Docker, Prometheus, Loki, etc)
-
-### English
-
-- CET-4: 664/710 (Top 1%)
