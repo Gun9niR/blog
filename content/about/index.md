@@ -4,10 +4,6 @@ date: 2021-10-12T15:05:26+08:00
 draft: false
 ---
 
-## What my ID means
-
-You might be wondering what my ID means at first glance. Well, it's actually an alias for **Gungnir**, the weapon of Odin in Norse mythology. Legend goes that it never misses its target, which sounds very kick-ass to me. But in reality, I'm nothing like Gungnir: I never consider it the end of the world not to accomplish my predefined task. I just try my best, and be happy with whatever I get. It's my secret for keeping a healthy mindset, and recover from any setback.
-
 ## Education
 
 ### Shanghai Jiaotong University
@@ -20,7 +16,7 @@ Shanghai, China
 
 GPA 92.369/100 (or 4.03/4.3), Rank 1/99
 
-- Important courses
+- Major courses
   - (98/100) CS154: Thinking and Approach of Programming
   - (96/100) CS149: Data Structure
   - (97/100) SE127: Software Basic Practice
@@ -36,7 +32,10 @@ GPA 92.369/100 (or 4.03/4.3), Rank 1/99
   - (98/100) SE3353: Architecture of Application Systems
   - (91/100) SE125: Machine Learning
   - (90/100) SE3352: Algorithm Design
-- Other courses
+  - (92/100) SE213: Software testing
+  - (99/100) SE3356: Cloud Operating System Design and Practice
+  - (93/100) SE3357: Operating System
+- Misc courses
   - (96/100) ME116: Introduction to Engineering
   - (99/100) EI203: Fundamental Circuit Theory
   - (95/100) ME210: Engineering Practice
@@ -53,13 +52,14 @@ September 2016 — June 2019
 
 Shanghai, China
 
-## Intership Experience
+## Internship Experience
 
 ### Metabit Trading
 
   Data System Engineering Intern, Data Infra Team, Feb 2022 - Now
 
-  - Project WIP
+- Implemented a redis client that is around 5x faster than [redis-plus-plus](https://github.com/sewenew/redis-plus-plus) in our use cases by taking advantage of parallelism.
+- Implemented the cache layer of the storage platform **MarketFS** based on a redis cluster, which improved the system throughput by 5x and reduced the memory consumption by 4x.
 
 ## Projects
 
@@ -69,13 +69,14 @@ Shanghai, China
 - [Ray tracer](https://github.com/Gun9niR/Ray-Tracer-in-Cpp) -- A basic ray tracer with antialiasing, defocus blur, motion blur, light source, importance sampling
 - [Kilo](https://github.com/Gun9niR/Kilo) -- A minial text editor that runs on terminal
 - [Comment Overflow](https://github.com/Comment-Overflow) -- A cross-platform forum APP
+- [Kuberboat](https://github.com/Kuberboat/Kuberboat) -- A simplified implementation of Kubernetes
 
 ## Skills
 
 ### Programming Languages
 
-C++, Java, JavaScript, Python, Dart
+C++, Java, Go, JavaScript, Python, Dart
 
 ### Development Skills
 
-Mobile Development (Flutter, Android native), Databases (MySQL, PostgreSQL, Redis, etc), Front-end (React), Back-end (Spring Boot), Messaging (RabbitMQ), DevOps (Docker, Prometheus, Loki, etc)
+Mobile Development (Flutter, Android native), Databases (MySQL, PostgreSQL, Redis), Front-end (React), Back-end (Spring Boot, nginx, etc), DevOps (Docker, Kubernetes, Prometheus, Loki, Grafana, etc)
