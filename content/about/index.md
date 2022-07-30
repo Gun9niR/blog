@@ -59,7 +59,7 @@ Shanghai, China
   Data System Engineering Intern, Data Infra Team, Feb 2022 - Now
 
 - Implemented a redis client that is around 5x faster than [redis-plus-plus](https://github.com/sewenew/redis-plus-plus) in our use cases by taking advantage of parallelism.
-- Implemented the cache layer of the storage platform **MarketFS** based on a redis cluster, which improved the system throughput by 5x and reduced the memory consumption by 4x.
+- Implemented the cache layer of the storage platform **MarketFS** based on a redis cluster, which improved the system throughput by 5x compared with the original filesystem-based cache and reduced the memory consumption by 4x.
 
 ## Projects
 
