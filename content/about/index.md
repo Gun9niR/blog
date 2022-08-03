@@ -56,10 +56,14 @@ Shanghai, China
 
 ### Metabit Trading
 
-  Data System Engineering Intern, Data Infra Team, Feb 2022 - Now
+  Data System Engineering Intern, Data Infra Team, Feb 2022 - Jul 2022
 
 - Implemented a redis client that is around 5x faster than [redis-plus-plus](https://github.com/sewenew/redis-plus-plus) in our use cases by taking advantage of parallelism.
 - Implemented the cache layer of the storage platform **MarketFS** based on a redis cluster, which improved the system throughput by 5x compared with the original filesystem-based cache and reduced the memory consumption by 4x.
+
+### Singularity Data
+
+  Database Kernel Development Engineer Intern, Aug 2022 - Now  
 
 ## Projects
 
